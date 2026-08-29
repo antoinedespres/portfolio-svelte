@@ -1,0 +1,23 @@
+# Append to /etc/caddy/Caddyfile, then: sudo systemctl reload caddy
+#
+# www redirects to the apex rather than being served too. SvelteKit compares
+# the Origin header of every form POST against ORIGIN, so serving the site on
+# two hostnames would make the contact form fail on whichever one ORIGIN is
+# not set to.
+www.antoinedespres.com {
+	redir https://antoinedespres.com{uri} permanent
+}
+
+antoinedespres.com {
+	reverse_proxy 127.0.0.1:3000
+	encode zstd gzip
+
+	log {
+		output file /var/log/caddy/antoinedespres.com.access.log {
+			roll_size 10MiB
+			roll_keep 5
+			mode 640
+		}
+		format json
+	}
+}
