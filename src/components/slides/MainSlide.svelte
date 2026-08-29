@@ -56,6 +56,15 @@
 				href="https://github.com/antoinedespres"
 			/>
 		</Box>
+		<Box size="sm" margin>
+			<Button
+				size="md"
+				label={m.nav_contact()}
+				leftEmoji="📮"
+				round
+				onclick={() => gotoSlide('contact')}
+			/>
+		</Box>
 	</div>
 	<DesignCredit />
 </Slide>

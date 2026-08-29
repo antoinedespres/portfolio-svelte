@@ -39,6 +39,13 @@
 			<LocaleSwitcher />
 			<Separator size="mi" />
 			{#if $menu.open}
+				<Button
+					size="sm"
+					label={m.nav_contact()}
+					leftEmoji="📮"
+					onclick={() => gotoSlide('contact')}
+				/>
+				<Separator size="mi" />
 				<Button size="sm" label={m.nav_home()} leftEmoji="🏠" onclick={() => gotoSlide('main')} />
 				<Separator size="mi" />
 				<Button
