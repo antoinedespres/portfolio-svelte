@@ -4,13 +4,17 @@
 	import Button from '../atoms/Button.svelte';
 	import Separator from '../atoms/Separator.svelte';
 
-	export let slides: { pictures: { src: string; widthPerc?: number }[]; label?: string }[] = [];
-	export let link: { label: string; href: string; } | null = null;
+	type Slide = { pictures: { src: string; widthPerc?: number }[]; label?: string };
 
-	let shown = 0;
-	let modal = false;
+	let {
+		slides = [],
+		link = null
+	}: { slides?: Slide[]; link?: { label: string; href: string } | null } = $props();
 
-	let label: string = slides[shown].label === undefined ? '' : (slides[shown].label as string);
+	let shown = $state(0);
+	let modal = $state(false);
+
+	const currentLabel = $derived(slides[shown]?.label ?? '');
 </script>
 
 <div class="row center-x caroussel">
@@ -21,7 +25,7 @@
 				leftEmoji=" "
 				rightEmoji=" "
 				label="⏮"
-				on:click={() => (shown = mod(shown - 1, slides.length))}
+				onclick={() => (shown = mod(shown - 1, slides.length))}
 			/>
 			<Separator size="pi" />
 			<Button
@@ -29,31 +33,32 @@
 				rightEmoji=" "
 				leftEmoji=" "
 				label="⏭"
-				on:click={() => (shown = mod(shown + 1, slides.length))}
+				onclick={() => (shown = mod(shown + 1, slides.length))}
 			/>
 			<Separator size="lg" />
 		{/if}
-		<Button size="sm" leftEmoji="🔎" label="enlarge" on:click={() => (modal = true)} />
+		<Button size="sm" leftEmoji="🔎" label="enlarge" onclick={() => (modal = true)} />
 		{#if link}
 			<Separator size="lg" />
 			<Button round size="sm" label={link.label} href={link.href} />
 		{/if}
 	</div>
-	{#each slides as { pictures, label }, i}
+	{#each slides as { pictures, label }, i (i)}
 		{#if label && label.length > 0 && shown === i}
 			<div class="label">
 				<p>{label}</p>
 			</div>
 		{/if}
 		<div class="row center-x pictures" class:modal-open={modal} class:shown={shown === i}>
-			{#each pictures as { src, widthPerc }, j}
-				<img
-					on:click={() => (modal = true)}
-					class="illustration"
-					{src}
-					alt={label}
+			{#each pictures as { src, widthPerc }, j (src)}
+				<button
+					type="button"
+					class="illustration-button"
+					onclick={() => (modal = true)}
 					style="max-width: {widthPerc ?? 97 / pictures.length}%"
-				/>
+				>
+					<img class="illustration" {src} alt={label} />
+				</button>
 				{#if j < pictures.length - 1}
 					<Separator size="pi" />
 				{/if}
@@ -71,7 +76,7 @@
 		</div>
 		<Separator size="mi" />
 		<div class="row center-x pictures shown">
-			{#each slides[shown].pictures as { src, widthPerc }, j}
+			{#each slides[shown].pictures as { src, widthPerc }, j (src)}
 				<img
 					class="illustration"
 					{src}
@@ -90,7 +95,7 @@
 					rightEmoji=" "
 					leftEmoji=" "
 					label="⏮"
-					on:click={() => (shown = mod(shown - 1, slides.length))}
+					onclick={() => (shown = mod(shown - 1, slides.length))}
 				/>
 				<Separator size="pi" />
 				<Button
@@ -98,25 +103,33 @@
 					rightEmoji=" "
 					leftEmoji=" "
 					label="⏭"
-					on:click={() => (shown = mod(shown + 1, slides.length))}
+					onclick={() => (shown = mod(shown + 1, slides.length))}
 				/>
 				<Separator size="md" />
 			{/if}
-			<Button size="sm" leftEmoji="❌" label="close" on:click={() => (modal = false)} />
+			<Button size="sm" leftEmoji="❌" label="close" onclick={() => (modal = false)} />
 			{#if link}
 				<Separator size="md" />
 				<Button round size="sm" label={link.label} href={link.href} />
 			{/if}
 		</div>
-		{#if label.length > 0}
-            <div class="label">
-                <p>{label}</p>
-            </div>
+		{#if currentLabel.length > 0}
+			<div class="label">
+				<p>{currentLabel}</p>
+			</div>
 		{/if}
 	</div>
 {/if}
 
 <style>
+	.illustration-button {
+		padding: 0;
+		border: none;
+		background: none;
+		cursor: zoom-in;
+		font: inherit;
+	}
+
 	.protip {
 		display: none;
 	}

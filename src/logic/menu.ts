@@ -1,9 +1,9 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
 export type Menu = {
-    open: boolean;
-}
+	open: boolean;
+};
 
 export const menu = writable<Menu>({
-    open: false
+	open: false
 });
