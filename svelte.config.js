@@ -1,17 +1,17 @@
-import node from '@sveltejs/adapter-node';
-import preprocess from 'svelte-preprocess';
-import { markdown } from 'svelte-preprocess-markdown';
+import adapter from '@sveltejs/adapter-node';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-    // Consult https://github.com/sveltejs/svelte-preprocess
-    // for more information about preprocessors
-    preprocess: [preprocess(), markdown()],
+	preprocess: vitePreprocess(),
 
-    extensions: ['.svelte','.md'],
-
-    kit: {
-		adapter: node()
+	kit: {
+		adapter: adapter(),
+		alias: {
+			$components: 'src/components',
+			$logic: 'src/logic',
+			$styles: 'src/styles'
+		}
 	}
 };
 
