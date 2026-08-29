@@ -3,6 +3,8 @@
 	import Button from '$components/atoms/Button.svelte';
 	import Box from '$components/atoms/Box.svelte';
 	import Slide from '$components/molecules/Slide.svelte';
+	import DesignCredit from '$components/atoms/DesignCredit.svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 
@@ -11,34 +13,29 @@
 
 <Slide {gotoSlide}>
 	<header class="row center-y wrap header">
-		<img id="pp" alt="me" src="https://avatars.githubusercontent.com/u/31180613?v=4" />
+		<img id="pp" alt="me" src="https://avatars.githubusercontent.com/u/58844676?v=4" />
 		<div class="col">
-			<h1 class="myname">Anicet</h1>
-			<h1 class="myname">Nougaret</h1>
+			<h1 class="myname">Antoine</h1>
+			<h1 class="myname">Després</h1>
 		</div>
 	</header>
 	<Separator size="md" />
-	<h4>Welcome! I'm a Computer Science student from Paris, France.</h4>
+	<h4>{m.main_greeting()}</h4>
 	<Separator size="mi" />
-	<p id="aboutme">
-		Currently doing fullstack web development, web design, multi-paradigm programming, indie game
-		creation and graphic art. This website is to showcase all of that to you.
-	</p>
+	<p id="aboutme">{m.main_about()}</p>
 	<Separator size="lg" />
 	<Box size="sm" margin>
 		<Button
 			onclick={() => gotoSlide(nextSlide)}
 			size="lg"
-			label="Discover my world"
+			label={m.main_discover()}
 			rightEmoji="🌍"
 			accent
 			round
 		/>
 	</Box>
-	<Separator size="sm" />
-	<p>∷ or ∷</p>
-	<Separator size="sm" />
-	<p><i>Find me on the WWW</i></p>
+	<Separator size="lg" />
+	<p><i>{m.main_find_me()}</i></p>
 	<Separator size="mi" />
 	<div class="links row wrap">
 		<Box size="sm" margin>
@@ -47,34 +44,20 @@
 				label="Linkedin"
 				leftEmoji="👔"
 				round
-				href="https://www.linkedin.com/in/anicet-nougaret-b7846b174/"
+				href="https://www.linkedin.com/in/antoine-despres/"
 			/>
-		</Box>
-		<Box size="sm" margin>
-			<Button size="md" label="Github" leftEmoji="🐙" round href="https://github.com/AnicetNgrt" />
 		</Box>
 		<Box size="sm" margin>
 			<Button
 				size="md"
-				label="Codersrank"
-				leftEmoji="💻"
+				label="Github"
+				leftEmoji="🐙"
 				round
-				href="https://profile.codersrank.io/user/anicetngrt"
-			/>
-		</Box>
-		<Box size="sm" margin>
-			<Button size="md" label="Itch.io" leftEmoji="💾" round href="https://anicetngrt.itch.io/" />
-		</Box>
-		<Box size="sm" margin>
-			<Button
-				size="md"
-				label="Email"
-				leftEmoji="📮"
-				round
-				href="mailto:anicet.nougaret@insa-lyon.fr"
+				href="https://github.com/antoinedespres"
 			/>
 		</Box>
 	</div>
+	<DesignCredit />
 </Slide>
 
 <style>

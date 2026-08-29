@@ -1,15 +1,30 @@
-# My 2021 portfolio
+# Antoine Després — portfolio
 
-This is not very much intended for collaboration so no fancy documentation, useful comments. Just the minimum quality so I'm able to maintain this all by myself.
+A personal portfolio site built with SvelteKit.
 
-If you have any technical question, please feel free to ask or even open an issue.
+## Credits
+
+The design of this site is by [@AnicetNgrt](https://github.com/AnicetNgrt), from
+[AnicetNgrt/portfolio-svelte](https://github.com/AnicetNgrt/portfolio-svelte), which this
+repository is forked from. The content is my own.
 
 ## Install and run in dev
 
-Run `npm install` & `npm run dev`. Open `localhost:3000`.
+```sh
+npm install
+npm run dev
+```
+
+Then open `localhost:5173`.
+
+## Checks
+
+```sh
+npm run check   # svelte-check
+npm run lint    # prettier + eslint
+npm run build   # production build
+```
 
 ## Licence
 
-Code : MIT
-
-Assets (pictures, art, screenshots...) : All rights reserved Anicet Nougaret @ 2021
+Code: MIT.

@@ -2,15 +2,58 @@
 	let {
 		size = 'md',
 		value = $bindable(''),
-		label = ''
-	}: { size?: string; value?: string; label?: string } = $props();
+		label = '',
+		name = '',
+		type = 'text',
+		required = false,
+		maxlength,
+		autocomplete,
+		ignoreAutofill = false
+	}: {
+		size?: string;
+		value?: string;
+		label?: string;
+		name?: string;
+		type?: 'text' | 'email';
+		required?: boolean;
+		maxlength?: number;
+		autocomplete?: 'name' | 'email' | 'off';
+		/**
+		 * Keeps password managers away from a field that only looks like a form
+		 * control, such as the theme editor's previews. Leave false on real
+		 * fields so legitimate autofill keeps working.
+		 */
+		ignoreAutofill?: boolean;
+	} = $props();
+
+	/*
+		Every manager ships its own opt-out attribute and most ignore
+		autocomplete="off" on its own, so the useful thing is to set all of them.
+	*/
+	const autofillAttrs = $derived(
+		ignoreAutofill
+			? {
+					autocomplete: 'off' as const,
+					'data-1p-ignore': '',
+					'data-lpignore': 'true',
+					'data-bwignore': 'true',
+					'data-protonpass-ignore': 'true',
+					'data-form-type': 'other'
+				}
+			: { autocomplete }
+	);
 </script>
 
 <div class="input-wrapper row center-y" style="--size: var(--{size})">
 	{#if label.length > 0}
 		<p class="label" class:non-empty-value={value.length > 0}>{label}</p>
 	{/if}
-	<input bind:value />
+	<!-- `type` is bound statically per usage, so a bind:value + dynamic type clash cannot occur. -->
+	{#if type === 'email'}
+		<input type="email" bind:value {name} {required} {maxlength} {...autofillAttrs} />
+	{:else}
+		<input type="text" bind:value {name} {required} {maxlength} {...autofillAttrs} />
+	{/if}
 </div>
 
 <style>

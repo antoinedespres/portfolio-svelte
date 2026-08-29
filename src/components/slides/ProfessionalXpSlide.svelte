@@ -1,124 +1,101 @@
 <script lang="ts">
-	import Box from '../atoms/Box.svelte';
-	import Button from '$components/atoms/Button.svelte';
 	import Slide from '$components/molecules/Slide.svelte';
+	import SlideHeader from '$components/molecules/SlideHeader.svelte';
 	import Separator from '$components/atoms/Separator.svelte';
-	import SlideHeader from '../molecules/SlideHeader.svelte';
+	import Box from '$components/atoms/Box.svelte';
+	import Button from '$components/atoms/Button.svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 </script>
 
 <Slide {gotoSlide}>
-	<SlideHeader onBackClicked={() => gotoSlide('map')} title="👔 Professional experience" />
+	<SlideHeader onBackClicked={() => gotoSlide('map')} title={m.slide_professional_xp()} />
+
 	<div class="col">
-		<div class="col">
-			<h3 class="highlighted">Fullstack web development</h3>
+		<!-- Seekube -->
+		<section class="col">
+			<h3 class="highlighted">{m.xp_seekube_role()}</h3>
 			<Separator size="sm" />
-			<div class="job-description">
-				<h4>Coddity</h4>
+			<div class="entry">
+				<h4>Seekube</h4>
 				<Separator size="pi" />
-				<p>Paid ∙ internship ∙ april to june 2021 ∙ 10 weeks ∙ Paris, France</p>
-				<Separator size="md" />
+				<p class="meta">{m.xp_seekube_meta()}</p>
+				<Separator size="mi" />
 				<div class="body">
-					<p>
-						Worked with the product development team at Coddity, a human-sized tech services company
-						located in Paris.
-					</p>
+					<p>{m.xp_seekube_body()}</p>
 					<Separator size="mi" />
-					<ul>
-						<li>
-							<b>Developed a web dashboard</b> with <b>React.js</b>, <b>Node.js</b> and <b>MySQL</b>
-							to empower both the commercial team with product data, as well as the maintenance team with
-							security insights and a GUI for their <b>Ansible</b> workflows.
-						</li>
-						<Separator size="mi" />
-						<li>
-							<b>Remade</b> Coddity's <b>blog from scratch</b> using <b>SvelteKit</b> and Atomic Design.
-							Went from UI/UX redesign to full production deployment in only 1 week.
-						</li>
-						<Separator size="mi" />
-						<li><b>Audited</b> Coddity's <b>React.js website</b> codebase</li>
-						<Separator size="mi" />
-						<li>
-							<b>Wrote a technical article</b> about parsers and functional programming for Coddity's
-							blog.
-						</li>
-						<Separator size="mi" />
-						<li>
-							<b>Gave a talk</b> about Elixir and the BEAM ecosystem to Coddity's engineering staff.
-						</li>
-					</ul>
+					<p class="stack">AWS · MongoDB · TypeScript · React</p>
 				</div>
-				<Separator size="lg" />
-				<h5>Related links :</h5>
-				<Separator size="pi" />
-				<div class="row wrap">
-					<Box size="sm" margin>
-						<Button
-							size="sm"
-							label="Coddity's Blog"
-							leftEmoji="📰"
-							round
-							href="https://blog.coddity.com/"
-						/>
-					</Box>
-					<Box size="sm" margin>
-						<Button
-							size="sm"
-							label="Internship report"
-							leftEmoji="🔍"
-							round
-							href="/documents/coddity_2021_rapport_stage.pdf"
-							relExternal
-						/>
-					</Box>
-				</div>
+				<Separator size="sm" />
+				<Box size="sm">
+					<Button size="sm" label="seekube.com" leftEmoji="🔗" round href="https://seekube.com" />
+				</Box>
 			</div>
-		</div>
+		</section>
+
 		<Separator size="xxl" />
-		<div class="col">
-			<div class="row">
-				<h3 class="highlighted">CS students mentoring</h3>
-			</div>
+
+		<!-- Career break -->
+		<section class="col">
+			<h3 class="highlighted">{m.xp_break_role()}</h3>
 			<Separator size="sm" />
-			<div class="job-description">
-				<h4>Université de Paris</h4>
-				<Separator size="pi" />
-				<p>Paid ∙ part time ∙ april to june 2021 ∙ 3 months ∙ Paris, France</p>
-				<Separator size="md" />
+			<div class="entry">
+				<p class="meta">{m.xp_break_meta()}</p>
+				<Separator size="mi" />
 				<div class="body">
-					<p>
-						Was part of a nation-wide program to help struggling student amid COVID-19 pandemic.
-						Helped a small group of first year Computer Science students.
-					</p>
-					<Separator size="mi" />
 					<ul>
-						<li>
-							<b>Prepared and gave remedial courses</b> on various topics such as object oriented programming,
-							algorithms, data structures and web development.
-						</li>
+						<li>{m.xp_break_b1()}</li>
 						<Separator size="mi" />
-						<li><b>Produced useful weekly reports</b> for the university's staff.</li>
+						<li>{m.xp_break_b2()}</li>
 						<Separator size="mi" />
-						<li><b>Worked out solutions</b> with struggling students.</li>
+						<li>{m.xp_break_b3()}</li>
 					</ul>
 				</div>
-				<Separator size="lg" />
-				<h5>Related links :</h5>
+			</div>
+		</section>
+
+		<Separator size="xxl" />
+
+		<!-- IDEMIA -->
+		<section class="col">
+			<h3 class="highlighted">{m.xp_idemia_role()}</h3>
+			<Separator size="sm" />
+			<div class="entry">
+				<h4>IDEMIA</h4>
 				<Separator size="pi" />
-				<div class="row wrap">
-					<Box size="sm" margin>
-						<Button
-							size="sm"
-							label="About COVID-19 students mentoring"
-							leftEmoji="🎓"
-							round
-							href="https://u-paris.fr/tuteurs-covid-conseils/"
-						/>
-					</Box>
+				<p class="meta">{m.xp_idemia_meta()}</p>
+				<Separator size="mi" />
+				<div class="body">
+					<ul>
+						<li>{m.xp_idemia_b1()}</li>
+						<Separator size="mi" />
+						<li>{m.xp_idemia_b2()}</li>
+						<Separator size="mi" />
+						<li>{m.xp_idemia_b3()}</li>
+					</ul>
+					<Separator size="mi" />
+					<p class="stack">Angular · Jenkins · smart cards · PKI</p>
 				</div>
 			</div>
-		</div>
+		</section>
+
+		<Separator size="xl" />
+
+		<section class="col">
+			<h3 class="highlighted">{m.xp_idemia_tools_role()}</h3>
+			<Separator size="sm" />
+			<div class="entry">
+				<h4>IDEMIA</h4>
+				<Separator size="pi" />
+				<p class="meta">{m.xp_idemia_tools_meta()}</p>
+				<Separator size="mi" />
+				<div class="body">
+					<p>{m.xp_idemia_tools_body()}</p>
+				</div>
+			</div>
+		</section>
+
 		<Separator size="xl" />
 	</div>
 </Slide>
@@ -132,7 +109,16 @@
 		margin-left: var(--sm);
 	}
 
-	.job-description {
+	.entry {
 		margin-left: var(--mi);
+	}
+
+	.meta {
+		color: var(--ccontrast);
+	}
+
+	.stack {
+		font-size: var(--sm);
+		color: var(--ccontrast);
 	}
 </style>

@@ -4,8 +4,10 @@
 
 	import { initTheme, theme, updateTheme } from '$logic/theme';
 	import { menu } from '$logic/menu';
+	import { m } from '$lib/paraglide/messages';
 	import Button from '$components/atoms/Button.svelte';
 	import Separator from '$components/atoms/Separator.svelte';
+	import LocaleSwitcher from '$components/atoms/LocaleSwitcher.svelte';
 
 	let {
 		gotoSlide,
@@ -34,17 +36,17 @@
 				<Button size="sm" rightEmoji="🌑" round accent onclick={() => updateTheme('dark')} />
 			{/if}
 			<Separator size="mi" />
+			<LocaleSwitcher />
+			<Separator size="mi" />
 			{#if $menu.open}
+				<Button size="sm" label={m.nav_home()} leftEmoji="🏠" onclick={() => gotoSlide('main')} />
+				<Separator size="mi" />
 				<Button
 					size="sm"
-					label="Contact"
-					leftEmoji="📮"
-					href="mailto:anicet.nougaret@etu.u-paris.fr"
+					label={m.nav_discover()}
+					leftEmoji="🌍"
+					onclick={() => gotoSlide('map')}
 				/>
-				<Separator size="mi" />
-				<Button size="sm" label="Home" leftEmoji="🏠" onclick={() => gotoSlide('main')} />
-				<Separator size="mi" />
-				<Button size="sm" label="Discover" leftEmoji="🌍" onclick={() => gotoSlide('map')} />
 				<Separator size="mi" />
 			{/if}
 			<Button
@@ -52,7 +54,7 @@
 				round
 				accent
 				leftEmoji={$menu.open ? '✖' : '☰'}
-				onclick={() => menu.update((m) => ({ ...m, open: !m.open }))}
+				onclick={() => menu.update((state) => ({ ...state, open: !state.open }))}
 			/>
 		</div>
 		<div class="col center-x" id="frame">
