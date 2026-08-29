@@ -1,0 +1,10 @@
+services:
+  portfolio:
+    image: ghcr.io/antoinedespres/portfolio-svelte:latest
+    container_name: portfolio-svelte
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      # Loopback only. Caddy terminates TLS and reverse-proxies to this port,
+      # so the Node server is never reachable from the internet directly.
+      - '127.0.0.1:3000:3000'

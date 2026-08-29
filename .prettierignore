@@ -4,4 +4,8 @@ build/**
 node_modules/**
 package-lock.json
 src/lib/paraglide/**
-project.inlang/cache/**
+# Paraglide regenerates everything in here except settings.json, and the
+# generated files are not Prettier-formatted. They are git-ignored via the
+# .gitignore Paraglide writes itself, but Prettier does not read that.
+project.inlang/**
+!project.inlang/settings.json
