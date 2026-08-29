@@ -8,7 +8,7 @@
 
 <div class="row wrap">
 	<Box {size} margin>
-		<Input value="" label="Username" {size} />
+		<Input value="" label="Sample" {size} ignoreAutofill />
 	</Box>
 	<Box {size} margin>
 		<Button leftEmoji="🧪" label="test" accent {size} onclick={() => {}} />

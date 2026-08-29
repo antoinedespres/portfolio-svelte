@@ -4,38 +4,33 @@
 	import SlideHeader from '../molecules/SlideHeader.svelte';
 	import Cards from '../organisms/Cards.svelte';
 	import Separator from '../atoms/Separator.svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 </script>
 
 <Slide {gotoSlide}>
-	<SlideHeader onBackClicked={() => gotoSlide('main')} title="Discover my world 🌍" />
+	<SlideHeader onBackClicked={() => gotoSlide('main')} title={m.map_title()} />
 	<Cards>
-		<Card title="👔 Professional Experience" onclick={() => gotoSlide('professionalXp')} />
-		<Card title="🎓 Education" onclick={() => gotoSlide('education')} />
+		<Card title={m.map_professional_xp()} onclick={() => gotoSlide('professionalXp')} />
+		<Card title={m.map_education()} onclick={() => gotoSlide('education')} />
 		<Card
-			title="💻 Fullstack dev portfolio"
-			abstract="From frontend with Svelte and React, backend with Node.js, Java and Elixir, to devOps with Docker. I love to solve difficult problems, share my knowledge and build beautiful UI."
+			title={m.map_certifications()}
+			abstract={m.map_certifications_abstract()}
+			onclick={() => gotoSlide('certifications')}
+		/>
+		<Card
+			title={m.map_webdev()}
+			abstract={m.map_webdev_abstract()}
 			onclick={() => gotoSlide('webdevShowreel')}
 		/>
-		<Card
-			title="🎲 Game creation portfolio"
-			abstract="Creating small games is my main hobby. I'm doing a bit of everything but mostly Pixel art, gameplay programming and game design. Many game jams. Godot Engine is great."
-			href="https://anicetngrt.itch.io/"
-		/>
-		<Card
-			title="🎴 Web design portfolio"
-			abstract="As a self-thaught web designer I'm most proficient with minimalist, brutalist and flat design. Professional experience with web design and UI/UX. Using mostly simple techniques and tools."
-			onclick={() => gotoSlide('webdesignShowreel')}
-		/>
-		<Card
-			title="👨‍🎨 Art gallery"
-			abstract="There you will discover my artworks. You'll find ink on paper works, Pixel Art works, drawings. My goal isn't to work in the art industry thought. I'm mostly keen to work and collaborate on hobby projects."
-			onclick={() => gotoSlide('artGallery')}
-		/>
 		<div class="row">
-			<Card small title="Theme editor" onclick={() => gotoSlide('themeEditor')} />
-			<Card small title="Source code" href="https://github.com/AnicetNgrt/portfolio-svelte" />
+			<Card small title={m.map_theme_editor()} onclick={() => gotoSlide('themeEditor')} />
+			<Card
+				small
+				title={m.map_source_code()}
+				href="https://github.com/antoinedespres/portfolio-svelte"
+			/>
 		</div>
 	</Cards>
 	<Separator size="md" />

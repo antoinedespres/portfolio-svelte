@@ -4,6 +4,7 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicInOut } from 'svelte/easing';
 	import { goto } from '$app/navigation';
+	import { localizeHref } from '$lib/paraglide/runtime';
 
 	import { initNavigation, updateNavigation } from '$logic/navigation';
 	import MainSlide from '$components/slides/MainSlide.svelte';
@@ -11,9 +12,8 @@
 	import ProfessionalXpSlide from '$components/slides/ProfessionalXpSlide.svelte';
 	import Education from '$components/slides/Education.svelte';
 	import WebDevShowreel from '$components/slides/WebDevShowreel.svelte';
-	import WebDesignShowreel from '$components/slides/WebDesignShowreel.svelte';
-	import ArtGallery from '$components/slides/ArtGallery.svelte';
 	import ThemeEditor from '$components/slides/ThemeEditor.svelte';
+	import Certifications from '$components/slides/Certifications.svelte';
 
 	type SlideProps = { gotoSlide: (slide: string) => void };
 	type SlideEntry = { url: string; component: Component<SlideProps>; name?: string };
@@ -24,11 +24,10 @@
 		main: { url: '/', component: MainSlide },
 		professionalXp: { url: '/professional-xp', component: ProfessionalXpSlide },
 		education: { url: '/education', component: Education },
+		certifications: { url: '/certifications', component: Certifications },
 		map: { url: '/map', component: MapSlide },
 		themeEditor: { url: '/theme-editor', component: ThemeEditor },
-		webdevShowreel: { url: '/fullstackdev-portfolio', component: WebDevShowreel },
-		webdesignShowreel: { url: '/webdesign-portfolio', component: WebDesignShowreel },
-		artGallery: { url: '/art-gallery', component: ArtGallery }
+		webdevShowreel: { url: '/fullstackdev-portfolio', component: WebDevShowreel }
 	};
 
 	let shownSlides = $state<SlideEntry[]>([]);
@@ -68,7 +67,7 @@
 				prevSlide = shownSlides[0].name;
 				updateNavigation({ prevSlide, slideName });
 				shownSlides = [slide];
-				goto(slide.url);
+				goto(localizeHref(slide.url));
 			}, 500);
 		}, 1);
 	}

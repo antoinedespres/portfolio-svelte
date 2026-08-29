@@ -5,6 +5,7 @@
 	import Slide from '$components/molecules/Slide.svelte';
 	import SlideHeader from '../molecules/SlideHeader.svelte';
 	import { theme } from '../../logic/theme';
+	import { m } from '$lib/paraglide/messages';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 
@@ -31,7 +32,7 @@
 </script>
 
 <Slide {gotoSlide}>
-	<SlideHeader onBackClicked={() => gotoSlide('map')} title="🎨 Theme editor" />
+	<SlideHeader onBackClicked={() => gotoSlide('map')} title={m.slide_theme_editor()} />
 	<div class="editor-body">
 		<div class="row wrap">
 			<div class="col">
