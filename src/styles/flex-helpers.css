@@ -1,28 +1,28 @@
 .col {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .row {
-    display: flex;
+	display: flex;
 }
 
 .col.center-x {
-    align-items: center;
+	align-items: center;
 }
 
 .col.center-y {
-    justify-content: center;
+	justify-content: center;
 }
 
 .row.center-y {
-    align-items: center;
+	align-items: center;
 }
 
 .row.center-x {
-    justify-content: center;
+	justify-content: center;
 }
 
 .wrap {
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 }

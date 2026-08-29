@@ -4,7 +4,17 @@
 	padding: 0;
 }
 
-div, a, button, input, p, span, h1, h2, h3, h4, h5 {
+div,
+a,
+button,
+input,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5 {
 	color: var(--ctext);
 	font-family: var(--font);
 }
@@ -18,17 +28,21 @@ body {
 }
 
 @media (prefers-color-scheme: light) {
-    body {
-        background: #fff;
-    }
+	body {
+		background: #fff;
+	}
 }
 @media (prefers-color-scheme: dark) {
-    body {
-        background: #333;
-    }
+	body {
+		background: #333;
+	}
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
 	font-family: var(--title-font);
 	width: max-content;
 	max-width: 100%;
@@ -70,7 +84,8 @@ h5 {
 	max-width: 80ch;
 }
 
-p, ul {
+p,
+ul {
 	font-size: var(--sm);
 	max-width: 80ch;
 }

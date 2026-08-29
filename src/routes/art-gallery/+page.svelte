@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Slideshow from "$components/organisms/Slideshow.svelte";
+	import Slideshow from '$components/organisms/Slideshow.svelte';
 </script>
 
-<Slideshow slideOverride="artGallery"/>
+<Slideshow slideOverride="artGallery" />
