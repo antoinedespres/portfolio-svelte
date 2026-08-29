@@ -1,24 +1,23 @@
-FROM node:16
+# ---- build ----
+FROM node:24-alpine AS build
 
-# install dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Copy all local files into the image.
 COPY . .
-
 RUN npm run build
 
-###
-# Only copy over the Node pieces we need
-# ~> Saves 35MB
-###
-FROM node:16
+# ---- runtime ----
+FROM node:24-alpine
 
 WORKDIR /app
-COPY --from=0 /app .
-COPY . .
+ENV NODE_ENV=production
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
+COPY --from=build /app/build ./build
 
 EXPOSE 3000
 CMD ["node", "./build"]
