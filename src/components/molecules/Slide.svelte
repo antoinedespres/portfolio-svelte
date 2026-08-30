@@ -89,7 +89,14 @@
 		border-bottom: 0;
 		border-top-right-radius: 2em;
 		border-top-left-radius: 2em;
-		z-index: 10;
+		/*
+			Above the design credit, which is a sibling fixed element. Because this
+			bar is itself a stacking context, the locale menu's own z-index cannot
+			lift it out of here: on mobile the credit sits right where that menu
+			opens, and at equal z-index the later element in the DOM won, painting
+			the credit straight across the open list.
+		*/
+		z-index: 20;
 		box-shadow: var(--shad-offx) var(--shad-offy) var(--ssmth) var(--ccontrast-shadow);
 	}
 
