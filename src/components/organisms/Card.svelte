@@ -98,9 +98,16 @@
 		padding-left: 0.3em;
 	}
 
+	/*
+		A fixed width truncated the longer locales: the title is laid out at
+		max-content, so anything past 15.9ch pushed the chevron column out of the
+		card instead of widening it. The width is a floor now, not a ceiling.
+	*/
 	.small.card {
 		font-size: var(--md);
-		width: 15.9ch;
+		width: max-content;
+		min-width: 15.9ch;
+		max-width: 100%;
 	}
 
 	p.small {
@@ -109,6 +116,7 @@
 
 	.link {
 		font-size: var(--md);
+		flex-shrink: 0;
 		min-height: 100%;
 		background-color: var(--caccent-faint);
 		text-decoration: none;
