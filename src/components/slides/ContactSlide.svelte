@@ -24,6 +24,54 @@
 	// The action returns message keys, so the text renders in the active locale.
 	const messages = m as unknown as Record<string, () => string>;
 	const t = (key: string | undefined) => (key ? (messages[key]?.() ?? key) : '');
+
+	/*
+		The SDK scans the document for .frc-captcha exactly once, when its script
+		finishes loading. Slide only renders its children on mount, so that scan
+		always runs before this widget exists and never picks it up: the element
+		stays empty, no frc-captcha-response field is created, and verifyCaptcha
+		rejects every submission. Attaching by hand is what actually mounts it.
+
+		This hangs off the element rather than the component on purpose. On success
+		the form is swapped for the banner while the component stays alive, and a
+		widget outliving its own iframe throws on the next message it posts.
+	*/
+	const SDK_POLL_MS = 50;
+	const SDK_TIMEOUT_MS = 10_000;
+
+	function friendlyCaptcha(node: HTMLElement) {
+		let stopped = false;
+		let widget: { destroy: () => void } | undefined;
+		const startedAt = Date.now();
+
+		// The SDK script is async, so the global may not exist yet.
+		const attach = () => {
+			if (stopped) return;
+
+			const sdk = window.frcaptcha;
+			if (sdk) {
+				sdk.attach();
+				widget = sdk.getAllWidgets().find((w) => w.getElement() === node);
+				return;
+			}
+
+			if (Date.now() - startedAt >= SDK_TIMEOUT_MS) {
+				console.error('[captcha] the Friendly Captcha SDK never loaded; the form cannot be sent');
+				return;
+			}
+
+			setTimeout(attach, SDK_POLL_MS);
+		};
+
+		attach();
+
+		return {
+			destroy() {
+				stopped = true;
+				widget?.destroy();
+			}
+		};
+	}
 </script>
 
 <Slide {gotoSlide}>
@@ -106,6 +154,7 @@
 
 				<div
 					class="frc-captcha"
+					use:friendlyCaptcha
 					data-sitekey={env.PUBLIC_FRIENDLYCAPTCHA_SITEKEY}
 					data-lang={getLocale()}
 				></div>
