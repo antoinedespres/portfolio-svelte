@@ -6,7 +6,9 @@
 
 	import type { Snippet } from 'svelte';
 	import { onMount } from 'svelte';
+	import { dev } from '$app/environment';
 	import { page } from '$app/state';
+	import { env } from '$env/dynamic/public';
 	import { m } from '$lib/paraglide/messages';
 	import {
 		baseLocale,
@@ -22,6 +24,11 @@
 	onMount(() => {
 		unmounted = false;
 	});
+
+	// Umami is cookieless, so it needs no consent banner, but it is still kept
+	// out of dev: localhost page views would otherwise be counted as real
+	// traffic. Leaving PUBLIC_UMAMI_WEBSITE_ID unset disables it entirely.
+	const umamiWebsiteId = dev ? undefined : env.PUBLIC_UMAMI_WEBSITE_ID;
 
 	const siteUrl = 'https://antoinedespres.com';
 	const thumbnail = `${siteUrl}/images/thumbnail.jpg`;
@@ -61,6 +68,9 @@
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:image:alt" content={title} />
+	{#if umamiWebsiteId}
+		<script defer src="https://cloud.umami.is/script.js" data-website-id={umamiWebsiteId}></script>
+	{/if}
 </svelte:head>
 
 <main class="main-theme light-theme theme-compute" class:unmounted>
