@@ -24,14 +24,27 @@
 			abstract={m.map_webdev_abstract()}
 			onclick={() => gotoSlide('webdevShowreel')}
 		/>
-		<div class="row">
+		<div class="row wrap small-cards">
 			<Card small title={m.map_theme_editor()} onclick={() => gotoSlide('themeEditor')} />
 			<Card
 				small
 				title={m.map_source_code()}
 				href="https://github.com/antoinedespres/portfolio-svelte"
 			/>
+			<Card small title={m.map_legal()} onclick={() => gotoSlide('legal')} />
 		</div>
 	</Cards>
 	<Separator size="md" />
 </Slide>
+
+<style>
+	/*
+		The small cards have a fixed width but their titles do not, so in the
+		longer locales they push past it and flex shrinks the chevron away.
+		Filling the row lets them wrap onto a second line instead.
+	*/
+	.small-cards {
+		width: 100%;
+		justify-content: center;
+	}
+</style>
