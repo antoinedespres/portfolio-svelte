@@ -15,6 +15,7 @@
 	import ThemeEditor from '$components/slides/ThemeEditor.svelte';
 	import ContactSlide from '$components/slides/ContactSlide.svelte';
 	import Certifications from '$components/slides/Certifications.svelte';
+	import LegalSlide from '$components/slides/LegalSlide.svelte';
 
 	type SlideProps = { gotoSlide: (slide: string) => void };
 	type SlideEntry = { url: string; component: Component<SlideProps>; name?: string };
@@ -29,7 +30,8 @@
 		map: { url: '/map', component: MapSlide },
 		themeEditor: { url: '/theme-editor', component: ThemeEditor },
 		webdevShowreel: { url: '/fullstackdev-portfolio', component: WebDevShowreel },
-		contact: { url: '/contact', component: ContactSlide }
+		contact: { url: '/contact', component: ContactSlide },
+		legal: { url: '/legal', component: LegalSlide }
 	};
 
 	let shownSlides = $state<SlideEntry[]>([]);
