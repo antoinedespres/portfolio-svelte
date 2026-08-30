@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
+	import { localizeHref } from '$lib/paraglide/runtime';
 </script>
 
-<div class="design-credit">
+<div class="design-credit row wrap center-y">
+	<a href={localizeHref('/legal')}>{m.nav_legal()}</a>
+	<span class="dot" aria-hidden="true">·</span>
 	<a
 		href="https://github.com/AnicetNgrt/portfolio-svelte"
 		target="_blank"
@@ -25,10 +28,13 @@
 		z-index: 10;
 		font-size: var(--sm);
 		max-width: 40vw;
+		justify-content: flex-end;
+		gap: 0.4em;
 		text-align: right;
 	}
 
-	.design-credit a {
+	.design-credit a,
+	.dot {
 		color: var(--ctext);
 		opacity: 0.55;
 		text-decoration: none;
@@ -57,6 +63,7 @@
 			transform: translateX(50%);
 			bottom: calc(1.6 * var(--mega));
 			max-width: 90vw;
+			justify-content: center;
 			text-align: center;
 		}
 	}
