@@ -77,6 +77,8 @@
 		outline: none;
 		height: 1.2em;
 		font: var(--font);
+		flex: 1 1 auto;
+		min-width: 0;
 	}
 
 	.input-wrapper:focus-within {
