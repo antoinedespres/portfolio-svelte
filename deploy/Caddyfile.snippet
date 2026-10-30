@@ -1,9 +1,9 @@
 # Append to /etc/caddy/Caddyfile, then: sudo systemctl reload caddy
 #
 # www redirects to the apex rather than being served too. SvelteKit compares
-# the Origin header of every form POST against ORIGIN, so serving the site on
-# two hostnames would make the contact form fail on whichever one ORIGIN is
-# not set to.
+# the Origin header of every form POST against paths.origin (vite.config.ts),
+# so serving the site on two hostnames would make the contact form fail on
+# whichever one it is not set to.
 www.antoinedespres.com {
 	redir https://antoinedespres.com{uri} permanent
 }

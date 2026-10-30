@@ -2,12 +2,12 @@
 	import type { Snippet } from 'svelte';
 	import { onMount } from 'svelte';
 
-	import { initTheme, theme, updateTheme } from '$logic/theme';
-	import { menu } from '$logic/menu';
-	import { m } from '$lib/paraglide/messages';
-	import Button from '$components/atoms/Button.svelte';
-	import Separator from '$components/atoms/Separator.svelte';
-	import LocaleSwitcher from '$components/atoms/LocaleSwitcher.svelte';
+	import { initTheme, theme, updateTheme } from '#logic/theme.js';
+	import { menu } from '#logic/menu.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import Button from '#components/atoms/Button.svelte';
+	import Separator from '#components/atoms/Separator.svelte';
+	import LocaleSwitcher from '#components/atoms/LocaleSwitcher.svelte';
 
 	let {
 		gotoSlide,

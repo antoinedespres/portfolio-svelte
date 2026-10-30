@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Separator from '$components/atoms/Separator.svelte';
-	import Button from '$components/atoms/Button.svelte';
-	import { m } from '$lib/paraglide/messages';
+	import Separator from '#components/atoms/Separator.svelte';
+	import Button from '#components/atoms/Button.svelte';
+	import { m } from '#lib/paraglide/messages.js';
 
 	let { title, onBackClicked }: { title: string; onBackClicked: () => void } = $props();
 </script>

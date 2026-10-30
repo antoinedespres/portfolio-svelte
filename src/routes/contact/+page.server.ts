@@ -1,8 +1,8 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import { CAPTCHA_FIELD, verifyCaptcha } from '$lib/server/captcha';
-import { sendContactEmail } from '$lib/server/mail';
-import { rateLimit } from '$lib/server/rate-limit';
+import { CAPTCHA_FIELD, verifyCaptcha } from '#lib/server/captcha.js';
+import { sendContactEmail } from '#lib/server/mail.js';
+import { rateLimit } from '#lib/server/rate-limit.js';
 
 const LIMITS = { name: 100, email: 254, subject: 200, message: 5000 };
 

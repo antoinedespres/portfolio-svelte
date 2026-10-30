@@ -1,5 +1,5 @@
-import { env } from '$env/dynamic/private';
-import { env as publicEnv } from '$env/dynamic/public';
+import { FRIENDLYCAPTCHA_API_KEY, FRIENDLYCAPTCHA_ENDPOINT } from '$app/env/private';
+import { PUBLIC_FRIENDLYCAPTCHA_SITEKEY } from '$app/env/public';
 
 /**
  * Friendly Captcha's EU endpoint, for data residency. Override with
@@ -20,23 +20,17 @@ export const CAPTCHA_FIELD = 'frc-captcha-response';
 export async function verifyCaptcha(token: FormDataEntryValue | null): Promise<boolean> {
 	if (typeof token !== 'string' || token.length === 0) return false;
 
-	const apiKey = env.FRIENDLYCAPTCHA_API_KEY;
+	const apiKey = FRIENDLYCAPTCHA_API_KEY;
 	if (!apiKey) {
 		console.error('[captcha] FRIENDLYCAPTCHA_API_KEY is not set; rejecting submission');
 		return false;
 	}
 
 	try {
-		const res = await fetch(env.FRIENDLYCAPTCHA_ENDPOINT || DEFAULT_SITEVERIFY_URL, {
+		const res = await fetch(FRIENDLYCAPTCHA_ENDPOINT || DEFAULT_SITEVERIFY_URL, {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-API-Key': apiKey
-			},
-			body: JSON.stringify({
-				response: token,
-				sitekey: publicEnv.PUBLIC_FRIENDLYCAPTCHA_SITEKEY
-			})
+			headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey },
+			body: JSON.stringify({ response: token, sitekey: PUBLIC_FRIENDLYCAPTCHA_SITEKEY })
 		});
 
 		if (!res.ok) {

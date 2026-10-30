@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Slide from '$components/molecules/Slide.svelte';
-	import SlideHeader from '$components/molecules/SlideHeader.svelte';
-	import Separator from '$components/atoms/Separator.svelte';
-	import { m } from '$lib/paraglide/messages';
+	import Slide from '#components/molecules/Slide.svelte';
+	import SlideHeader from '#components/molecules/SlideHeader.svelte';
+	import Separator from '#components/atoms/Separator.svelte';
+	import { m } from '#lib/paraglide/messages.js';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 

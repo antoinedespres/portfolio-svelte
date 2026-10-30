@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Separator from '$components/atoms/Separator.svelte';
-	import Button from '$components/atoms/Button.svelte';
-	import Box from '$components/atoms/Box.svelte';
-	import Slide from '$components/molecules/Slide.svelte';
-	import DesignCredit from '$components/atoms/DesignCredit.svelte';
-	import { m } from '$lib/paraglide/messages';
+	import Separator from '#components/atoms/Separator.svelte';
+	import Button from '#components/atoms/Button.svelte';
+	import Box from '#components/atoms/Box.svelte';
+	import Slide from '#components/molecules/Slide.svelte';
+	import DesignCredit from '#components/atoms/DesignCredit.svelte';
+	import { m } from '#lib/paraglide/messages.js';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 

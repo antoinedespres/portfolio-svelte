@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Slide from '$components/molecules/Slide.svelte';
-	import Card from '$components/organisms/Card.svelte';
+	import Slide from '#components/molecules/Slide.svelte';
+	import Card from '#components/organisms/Card.svelte';
 	import SlideHeader from '../molecules/SlideHeader.svelte';
 	import Cards from '../organisms/Cards.svelte';
 	import Separator from '../atoms/Separator.svelte';
-	import { m } from '$lib/paraglide/messages';
+	import { m } from '#lib/paraglide/messages.js';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 </script>

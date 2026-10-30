@@ -4,18 +4,18 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicInOut } from 'svelte/easing';
 	import { goto } from '$app/navigation';
-	import { localizeHref } from '$lib/paraglide/runtime';
+	import { localizeHref } from '#lib/paraglide/runtime.js';
 
-	import { initNavigation, updateNavigation } from '$logic/navigation';
-	import MainSlide from '$components/slides/MainSlide.svelte';
-	import MapSlide from '$components/slides/MapSlide.svelte';
-	import ProfessionalXpSlide from '$components/slides/ProfessionalXpSlide.svelte';
-	import Education from '$components/slides/Education.svelte';
-	import WebDevShowreel from '$components/slides/WebDevShowreel.svelte';
-	import ThemeEditor from '$components/slides/ThemeEditor.svelte';
-	import ContactSlide from '$components/slides/ContactSlide.svelte';
-	import Certifications from '$components/slides/Certifications.svelte';
-	import LegalSlide from '$components/slides/LegalSlide.svelte';
+	import { initNavigation, updateNavigation } from '#logic/navigation.js';
+	import MainSlide from '#components/slides/MainSlide.svelte';
+	import MapSlide from '#components/slides/MapSlide.svelte';
+	import ProfessionalXpSlide from '#components/slides/ProfessionalXpSlide.svelte';
+	import Education from '#components/slides/Education.svelte';
+	import WebDevShowreel from '#components/slides/WebDevShowreel.svelte';
+	import ThemeEditor from '#components/slides/ThemeEditor.svelte';
+	import ContactSlide from '#components/slides/ContactSlide.svelte';
+	import Certifications from '#components/slides/Certifications.svelte';
+	import LegalSlide from '#components/slides/LegalSlide.svelte';
 
 	type SlideProps = { gotoSlide: (slide: string) => void };
 	type SlideEntry = { url: string; component: Component<SlideProps>; name?: string };

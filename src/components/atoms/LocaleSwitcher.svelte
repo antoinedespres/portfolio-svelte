@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getLocale, setLocale, locales, type Locale } from '$lib/paraglide/runtime';
+	import { getLocale, setLocale, locales, type Locale } from '#lib/paraglide/runtime.js';
 
 	const labels: Record<string, string> = { en: 'EN', fr: 'FR', ko: 'KO' };
 	const names: Record<string, string> = {

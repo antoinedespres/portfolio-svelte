@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
-	import Slide from '$components/molecules/Slide.svelte';
-	import SlideHeader from '$components/molecules/SlideHeader.svelte';
-	import Separator from '$components/atoms/Separator.svelte';
-	import Input from '$components/atoms/Input.svelte';
-	import Textarea from '$components/atoms/Textarea.svelte';
-	import Button from '$components/atoms/Button.svelte';
-	import Box from '$components/atoms/Box.svelte';
-	import { m } from '$lib/paraglide/messages';
-	import { getLocale } from '$lib/paraglide/runtime';
-	import { env } from '$env/dynamic/public';
+	import Slide from '#components/molecules/Slide.svelte';
+	import SlideHeader from '#components/molecules/SlideHeader.svelte';
+	import Separator from '#components/atoms/Separator.svelte';
+	import Input from '#components/atoms/Input.svelte';
+	import Textarea from '#components/atoms/Textarea.svelte';
+	import Button from '#components/atoms/Button.svelte';
+	import Box from '#components/atoms/Box.svelte';
+	import { m } from '#lib/paraglide/messages.js';
+	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { PUBLIC_FRIENDLYCAPTCHA_SITEKEY } from '$app/env/public';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 
@@ -155,7 +155,7 @@
 				<div
 					class="frc-captcha"
 					use:friendlyCaptcha
-					data-sitekey={env.PUBLIC_FRIENDLYCAPTCHA_SITEKEY}
+					data-sitekey={PUBLIC_FRIENDLYCAPTCHA_SITEKEY}
 					data-lang={getLocale()}
 				></div>
 				<Separator size="md" />

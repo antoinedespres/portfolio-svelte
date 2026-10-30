@@ -30,11 +30,9 @@ the pattern used by the other services on that host.
       docker-compose.yml   <- copy of deploy/docker-compose.yml
       .env                 <- secrets, never committed
 
-`.env` needs everything from `.env.example` in the repo root. `ORIGIN` and
-`ADDRESS_HEADER` are not optional: without the first, SvelteKit rejects every
-contact-form submission as a cross-site POST; without the second, Caddy's
-address is what `getClientAddress()` returns, so all visitors share one
-rate-limit bucket.
+`.env` needs everything from `.env.example` in the repo root. `ADDRESS_HEADER`
+is not optional: without it, Caddy's address is what `getClientAddress()`
+returns, so all visitors share one rate-limit bucket.
 
 ## Caddy
 

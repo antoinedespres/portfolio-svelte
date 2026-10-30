@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Separator from '$components/atoms/Separator.svelte';
-	import Box from '$components/atoms/Box.svelte';
+	import Separator from '#components/atoms/Separator.svelte';
+	import Box from '#components/atoms/Box.svelte';
 
 	let {
 		small = false,

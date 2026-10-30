@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } from '$app/env/private';
 
 const RESEND_URL = 'https://api.resend.com/emails';
 
@@ -26,9 +26,9 @@ function escapeHtml(value: string): string {
  * without letting anyone send mail as a verified domain.
  */
 export async function sendContactEmail(msg: ContactMessage): Promise<boolean> {
-	const apiKey = env.RESEND_API_KEY;
-	const to = env.CONTACT_TO_EMAIL;
-	const from = env.CONTACT_FROM_EMAIL;
+	const apiKey = RESEND_API_KEY;
+	const to = CONTACT_TO_EMAIL;
+	const from = CONTACT_FROM_EMAIL;
 
 	if (!apiKey || !to || !from) {
 		console.error('[mail] RESEND_API_KEY, CONTACT_TO_EMAIL or CONTACT_FROM_EMAIL is not set');

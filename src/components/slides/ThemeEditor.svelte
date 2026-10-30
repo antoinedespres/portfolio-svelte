@@ -2,10 +2,10 @@
 	import Separator from '../atoms/Separator.svelte';
 	import SizeBenchmark from '../organisms/SizeBenchmark.svelte';
 	import Slider from '../molecules/Slider.svelte';
-	import Slide from '$components/molecules/Slide.svelte';
+	import Slide from '#components/molecules/Slide.svelte';
 	import SlideHeader from '../molecules/SlideHeader.svelte';
 	import { theme } from '../../logic/theme';
-	import { m } from '$lib/paraglide/messages';
+	import { m } from '#lib/paraglide/messages.js';
 
 	let { gotoSlide }: { gotoSlide: (slide: string) => void } = $props();
 
